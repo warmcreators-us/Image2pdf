@@ -133,3 +133,44 @@ From the project root dir, run:
 ```sh
 yarn generate:shopify
 ```
+## Examples
+  {
+    "name": "@vercel/commerce-shopify",
+    "version": "0.0.1",
+    "license": "MIT",
+    "scripts": {
+      "release": "taskr release",
+      "build": "taskr build",
+      "dev": "taskr",
+      "types": "tsc --emitDeclarationOnly",
+      "prettier-fix": "prettier --write .",
+      "generate": "DOTENV_CONFIG_PATH=./.env graphql-codegen -r dotenv/config"
+    },
+    "sideEffects": false,
+    "type": "module",
+    "exports": {
+      ".": "./dist/index.js",
+      "./*": [
+        "./dist/*.js",
+        "./dist/*/index.js"
+      ],
+      "./next.config": "./dist/next.config.cjs"
+
+## A version of the API.
+  """
+  type ApiVersion {
+    """
+    The human-readable name of the version.
+    """
+    displayName: String!
+
+    """
+    The unique identifier of an ApiVersion. All supported API versions have a date-based (YYYY-MM) or `unstable` handle.
+    """
+    handle: String!
+
+    """
+    Whether the version is actively supported by Shopify. Supported API versions are guaranteed to be stable. Unsupported API versions include unstable, release candidate, and end-of-life versions that are marked as unsupported. For more information, refer to [Versioning](https://shopify.dev/concepts/about-apis/versioning).
+    """
+    supported: Boolean!
+  }
