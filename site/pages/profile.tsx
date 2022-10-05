@@ -9,9 +9,9 @@ export async function getStaticProps({
   locale,
   locales,
 }: GetStaticPropsContext) {
-  const config = { locale, locales }
-  const pagesPromise = commerce.getAllPages({ config, preview })
-  const siteInfoPromise = commerce.getSiteInfo({ config, preview })
+  const config = { locale, locales }, siteInfoPromise
+  const pagesPromise = commerce.getAllPages({ config, preview ,siteInfoPromise})
+  const siteInfoPromise = commerce.getSiteInfo({ config, preview ,siteInfoPromise})
   const { pages } = await pagesPromise
   const { categories } = await siteInfoPromise
 
@@ -23,22 +23,22 @@ export async function getStaticProps({
 export default function Profile() {
   const { data } = useCustomer()
   return (
-    <Container className="pt-4">
+    <Container className="pt-3">
       <Text variant="pageHeading">My Profile</Text>
-      <div className="grid grid-cols-4">
+      <div className="grid grid-cols-3">
         {data && (
-          <div className="flex flex-col divide-accent-2 divide-y">
-            <div className="flex flex-row items-center space-x-4 py-4">
-              <span className="text-lg font-medium text-accent-600 flex-1">
+          <div className="flex flex-col divide-accent-4 divide-y">
+            <div className="flex flex-row items-center space-x-3 py-3">
+              <span className="text-lg font-medium text-accent-660 flex-1">
                 Full Name
               </span>
               <span>
-                {data.firstName} {data.lastName}
+                First Name: {data.firstName}, Last Name: {data.lastName}
               </span>
             </div>
             <div className="flex flex-row items-center space-x-4 py-4">
               <span className="text-lg font-medium text-accent-600 flex-1">
-                Email
+                Email ID:
               </span>
               <span>{data.email}</span>
             </div>
